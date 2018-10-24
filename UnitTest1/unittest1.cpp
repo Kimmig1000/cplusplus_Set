@@ -91,7 +91,7 @@ namespace UnitTest1
 			Assert::IsTrue(Set::intersection(Set(), s1) == Set());
 			Assert::IsTrue(Set::intersection(s1, Set()) == Set());
 		}
-		/*
+		
 		TEST_METHOD(MoveSemantics) {
 			// test move intersection
 			Set s1({ 1,2,3 });
@@ -114,7 +114,7 @@ namespace UnitTest1
 			Assert::IsTrue(s1 == s4);
 			Assert::AreEqual(s1.size(), s4.size());
 		}
-
+		/*
 		TEST_METHOD(Merge_Ordered) {
 			OrderedSet s1({ 3,2,1,1,2 });
 			OrderedSet s2({ 3,2,4 });

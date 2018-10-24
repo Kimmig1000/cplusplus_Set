@@ -2,6 +2,7 @@
 #include <memory>
 #include <initializer_list>
 #include <fstream>
+#include <iostream>
 
 class Set {
 protected:
@@ -11,7 +12,7 @@ protected:
 	size_t m_size;
 	//-------------------------------
 
-	
+
 	Set(size_t size);
 
 
@@ -22,6 +23,9 @@ protected:
 
 	Set intersection(const Set& set) const;
 
+	Set difference(Set&& set) const;
+
+	Set intersection(Set&& set) const;
 
 
 	int *begin() const;
@@ -50,24 +54,52 @@ public:
 	//--------------------------------------------------------
 	// set operations that call the protected set operations
 	static Set merge(const Set& set1, const Set& set2) { return set1.merge(set2); }
-	
+
 	static Set difference(const Set& set1, const Set& set2) { return set2.difference(set1); }
-	
+
 	static Set intersection(const Set& set1, const Set& set2) { return set1.intersection(set2); }
 
+
 	//--------------------------------------------------------
-	
-	
+	// using MOVE
+	// Difference set set1\set2
+	static Set difference(Set&& set1, const Set& set2)
+	{
+		std::cout << "difference1 called" << std::endl;
+		return set2.difference(std::move(set1));
+	}
+	static Set difference(Set&& set1, Set&& set2)
+	{
+		std::cout << "difference2 called" << std::endl;
+		return set2.difference(std::move(set1));
+	}
+	// intersect set
+	static Set intersection(const Set& set1, Set&& set2)
+	{
+		return set1.intersection(std::move(set2));
+	}
+	static Set intersection(Set&& set1, const Set& set2)
+	{
+		return set2.intersection(std::move(set1));
+	}
+	static Set intersection(Set&& set1, Set&& set2)
+	{
+		return set1.intersection(std::move(set2));
+	}
+
+	//--------------------------------------------------------
+
+
 	bool contains(int value) const;
 
 	bool containsAll(const Set& set) const;
 
 	bool isEmpty() const;
 
-	size_t size() const; 
-	
+	size_t size() const;
+
 	bool operator==(const Set& set) const { return containsAll(set) && set.containsAll(*this); }
-	
+
 	friend std::ostream& operator<<(std::ostream& os, const Set& s) {
 		const int* const vptr = s.begin();
 		os << "{";
