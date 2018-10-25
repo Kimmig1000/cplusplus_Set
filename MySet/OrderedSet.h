@@ -9,8 +9,7 @@ protected:
 
 	void sort();
 
-	// algorithm found on https://www.geeksforgeeks.org/merge-two-sorted-arrays/
-	// could be slow on big arrays, because it still uses the contains method
+	// algorithm found on https://www.geeksforgeeks.org/merge-two-sorted-arrays/ -> adjusted it	
 	Set merge(const Set& set) const override;
 
 public:
