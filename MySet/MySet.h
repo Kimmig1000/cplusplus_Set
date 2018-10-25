@@ -17,7 +17,7 @@ protected:
 
 
 
-	Set merge(const Set& set) const;
+	virtual Set merge(const Set& set) const;
 
 	Set difference(const Set& set) const;
 
@@ -28,7 +28,7 @@ protected:
 	Set intersection(Set&& set) const;
 
 
-	int *begin() const;
+	virtual int *begin() const;
 
 	int& operator[](size_t i) const;
 
@@ -49,7 +49,7 @@ public:
 	Set(const int* cArray, size_t size);
 
 	// nothing to delete, as we use shared_ptr
-	~Set();
+	virtual ~Set();
 
 	//--------------------------------------------------------
 	// set operations that call the protected set operations
@@ -64,13 +64,11 @@ public:
 	// using MOVE
 	// Difference set set1\set2
 	static Set difference(Set&& set1, const Set& set2)
-	{
-		std::cout << "difference1 called" << std::endl;
+	{		
 		return set2.difference(std::move(set1));
 	}
 	static Set difference(Set&& set1, Set&& set2)
-	{
-		std::cout << "difference2 called" << std::endl;
+	{		
 		return set2.difference(std::move(set1));
 	}
 	// intersect set

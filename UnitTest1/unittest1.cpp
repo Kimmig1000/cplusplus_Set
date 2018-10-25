@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 
 #include "../MySet/MySet.h"
+#include "../MySet/OrderedSet.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -114,7 +115,7 @@ namespace UnitTest1
 			Assert::IsTrue(s1 == s4);
 			Assert::AreEqual(s1.size(), s4.size());
 		}
-		/*
+		
 		TEST_METHOD(Merge_Ordered) {
 			OrderedSet s1({ 3,2,1,1,2 });
 			OrderedSet s2({ 3,2,4 });
@@ -125,7 +126,7 @@ namespace UnitTest1
 			Assert::IsTrue(Set::merge(s1, Set()) == s1);
 			Assert::IsTrue(Set::merge(Set(), s1) == s1);
 		}
-
+		
 		TEST_METHOD(GetSmallerLarger) {
 			OrderedSet s1({ 3,2,1 });
 			OrderedSet s2({ 1 });
@@ -169,6 +170,6 @@ namespace UnitTest1
 			Assert::IsTrue(s1.getLarger(1) == OrderedSet({ 2,3,20,13,9 }));
 			Assert::IsTrue(s1.getLarger(0) == s1);
 		}
-		*/
+		
 	};
 }
